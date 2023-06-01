@@ -36,6 +36,8 @@ object SparkStreaming04_DirectAuto {
 
     // 将每条消息(KV)的 V 取出
     val valueDStream: DStream[String] = kafkaDStream.map(record => record.value())
+    val keyDStream: DStream[String] = kafkaDStream.map(record => "KEY====>" +record.key())
+    keyDStream.print()
 
     // 计算
     valueDStream.flatMap(_.split(" ")).map((_, 1)).reduceByKey(_ + _).print()

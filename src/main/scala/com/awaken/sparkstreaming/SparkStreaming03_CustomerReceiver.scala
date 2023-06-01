@@ -39,6 +39,13 @@ object SparkStreaming03_CustomerReceiver {
   }
 }
 
+/**
+ * 自定义数据源
+ * @param host ： 主机名称
+ * @param port ： 端口号
+ *  Receiver[String] ：返回值类型：String
+ *  StorageLevel.MEMORY_ONLY： 返回值存储级别
+ */
 class CustomerReceiver(host: String, port: Int) extends Receiver[String](StorageLevel.MEMORY_ONLY) {
 
   // receiver 刚启动的时候，调用该方法，作用为：读数据并将数据发送给 Spark
